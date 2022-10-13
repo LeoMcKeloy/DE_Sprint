@@ -24,7 +24,6 @@ for page in range(0, 5):
         resp_object = req.get(url_object)
 
         soup_object = BeautifulSoup(resp_object.text, "lxml")
-        # tag_compensation = soup_object.find(attrs={'data-qa': 'vacancy-salary'}).find(attrs={'data-qa': "vacancy-salary-compensation-type-net"})
         try:
             tag_compensation = soup_object.find(attrs={'data-qa': 'vacancy-salary'}).find(attrs={'data-qa': "vacancy-salary-compensation-type-net"}).text
         except:

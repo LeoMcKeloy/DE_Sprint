@@ -5,16 +5,19 @@ def brackets_validate(string):
         if symbol == "{" or symbol == "[" or symbol == "(":
             brackets.append(symbol)
         elif symbol == "}":
-            if brackets.pop() == "{":
-                continue
+            if len(brackets) != 0:
+                if brackets.pop() == "{":
+                    continue
             return False
         elif symbol == "]":
-            if brackets.pop() == "[":
-                continue
+            if len(brackets) != 0:
+                if brackets.pop() == "[":
+                    continue
             return False
         elif symbol == ")":
-            if brackets.pop() == "(":
-                continue
+            if len(brackets) != 0:
+                if brackets.pop() == "(":
+                    continue
             return False
     if len(brackets) == 0:
         return True

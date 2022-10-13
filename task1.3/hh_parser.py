@@ -10,7 +10,7 @@ data = {
 
 req = RequestsTor()
 
-for page in range(0, 2):
+for page in range(0, 5):
     url = f"https://hh.ru/search/vacancy?text=python+разработчик&clusters=true&ored_clusters=true&enable_snippets" \
           f"=true&page={page}&hhtmFrom=vacancy_search_list "
     resp = req.get(url)
@@ -24,11 +24,11 @@ for page in range(0, 2):
         resp_object = req.get(url_object)
 
         soup_object = BeautifulSoup(resp_object.text, "lxml")
-        tag_compensation = soup_object.find(attrs={'data-qa': 'vacancy-salary'}).find(attrs={'data-qa': "vacancy-salary-compensation-type-net"})
-        if tag_compensation is None:
-            tag_compensation = 'None'
-        else:
+        # tag_compensation = soup_object.find(attrs={'data-qa': 'vacancy-salary'}).find(attrs={'data-qa': "vacancy-salary-compensation-type-net"})
+        try:
             tag_compensation = soup_object.find(attrs={'data-qa': 'vacancy-salary'}).find(attrs={'data-qa': "vacancy-salary-compensation-type-net"}).text
+        except:
+            tag_compensation = "None"
         try:
             tag_region = soup_object.find(attrs={'data-qa': 'vacancy-view-link-location'}).find(attrs={'data-qa': "vacancy-view-raw-address"}).text
         except:
